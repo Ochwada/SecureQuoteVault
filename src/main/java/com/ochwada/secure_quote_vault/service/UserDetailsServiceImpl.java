@@ -29,20 +29,30 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-    /** Repository for accessing user data. */
+    /**
+     * Repository used to access user data from the database.
+     */
     private final UserRepository repository;
 
 
+    /**
+     * Locates the user based on the username. If found, returns a Spring Security {@link UserDetails}
+     * object with granted authorities mapped from user roles.
+     *
+     * @param username the username identifying the user whose data is required
+     * @return {@link UserDetails} containing user's authentication and authority information
+     * @throws UsernameNotFoundException if the user is not found in the database
+     */
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
 
-        // Fetch user from DB
+        // Fetch the user from the database or throw exception if not found
         User user = repository
                 .findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        // Map roles to authorities
+        // Map each role (enum) to a SimpleGrantedAuthority, prefixed with "ROLE_"
         List<SimpleGrantedAuthority> authorities = user.getRoles()
                 .stream()
                 .map(role -> new SimpleGrantedAuthority(
@@ -50,13 +60,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 ))
                 .toList();
 
-        // Create custom SecurityUser
-        UserDetails userDetails = new SecurityUser(
+        // Create and return a Spring Security-compatible UserDetails object
+        return new SecurityUser(
                 user.getUsername(),
                 user.getPassword(),
                 authorities
         );
-
-        return userDetails;
     }
 }
