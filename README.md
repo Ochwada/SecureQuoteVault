@@ -42,3 +42,32 @@ This is a complete **end-to-end full-stack backend project**.
 * Lombok
 * Spring Boot DevTools
 * Validation
+# 🔐 Auth Endpoints
+
+| Method | Endpoint         | Description                          |
+|--------|------------------|--------------------------------------|
+| POST   | `/auth/signup`   | Registers a new user                 |
+| POST   | `/auth/signin`   | Authenticates user and returns JWT   |
+
+---
+
+## 📘 Quote Endpoints
+
+| Method | Endpoint             | Description                                          | Auth Required |
+|--------|----------------------|------------------------------------------------------|---------------|
+| GET    | `/api/quotes/random` | Fetches and stores a random quote from API           | ✅ Yes         |
+| GET    | `/api/quotes`        | Returns all quotes fetched by the authenticated user | ✅ Yes         |
+
+---
+
+# ⚙️ Tech Stack
+
+- **Java 17+**
+- **Spring Boot**
+- **Spring Security**
+- **Spring Data MongoDB**
+- **Lombok**
+- **RestTemplate**
+- **MongoDB Atlas**
+- **JWT (JJWT)**
+- **Docker**

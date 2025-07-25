@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * *******************************************************
@@ -88,6 +89,19 @@ public class QuoteService {
 
         // Save to database and return the persisted quote
         return repository.insert(quote);
+    }
+
+    /**
+     * Retrieves all quotes from the database that were fetched by a specific user.
+     * <p>
+     * This method queries the {@link QuoteRepository} for all {@link Quote} entries where the {@code fetchedBy}
+     * field matches the given username.
+     *
+     * @param username the username of the user whose quotes should be retrieved
+     * @return a list of {@link Quote} objects associated with the given user
+     */
+    public List<Quote> getQuotesByUser(String username) {
+        return repository.findByFetchedBy(username);
     }
 
 }

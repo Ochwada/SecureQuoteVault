@@ -7,7 +7,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.SecretKey;
+import java.security.Key;
 import java.util.Date;
 
 /**
@@ -34,15 +34,15 @@ public class JWTUtil {
     private String jwtSecret;
 
     /**
-     * Converts the raw JWT Secret string into a secure HMAC-SHA256 {@link SecretKey}
+     * Converts the raw JWT Secret string into a secure HMAC-SHA256 {@link Key}
      * *
      * This key is used to digitally sign and verify JWTs using the HS256 algorithm.
      * The secret must be at least 256 bits (32 bytes) long to meet the key length requirements for HS256.
      *
-     * @return a {@link SecretKey} suitable for signing and verifying JWTs
+     * @return a {@link Key} suitable for signing and verifying JWTs
      * @throws IllegalArgumentException if the key length is insufficient
      */
-    private SecretKey getSigningKey() {
+    private Key getSigningKey() {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes());
     }
 
@@ -70,7 +70,7 @@ public class JWTUtil {
                 .setSubject(username) // standard claim 'sub' = username
                 .setIssuedAt(now) // token creation time = now
                 .setExpiration(expiryDate) // expires in 1 hour
-                .signWith(getSigningKey(), SignatureAlgorithm.HS384) // creating the token
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256) // creating the token
                 .compact(); // build the token into a compact string
     }
 

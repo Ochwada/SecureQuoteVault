@@ -45,5 +45,5 @@ public interface UserRepository extends MongoRepository<User, String> {
   * @param username the username to check for existence
   * @return {@code true} if a user with the specified username exists, {@code false} otherwise
   */
- boolean exitsByUsername(String username);
+ boolean existsByUsername(String username);
 }
