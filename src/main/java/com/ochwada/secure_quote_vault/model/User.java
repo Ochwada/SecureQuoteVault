@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.*;
+
 /**
  * *******************************************************
  * Package: com.ochwada.secure_quote_vault.model
@@ -59,5 +61,5 @@ public class User {
      * The list of roles assigned to the user.
      * Used by Spring Security for access control -  injected from enum
      */
-    private Role role;
+    private List<Role> roles;
 }
