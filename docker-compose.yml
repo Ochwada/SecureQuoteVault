@@ -1,0 +1,7 @@
+services:
+  SecureQuoteVault:
+    build: .
+    ports:
+      - "${PORT}:9090"
+    env_file:
+      - .env
