@@ -32,7 +32,7 @@ public class Quote {
     /**
      * The actual quote text.
      */
-    private String quote;
+    private String quoteString;
 
     /**
      * The name of the person who originally said or wrote the quote.

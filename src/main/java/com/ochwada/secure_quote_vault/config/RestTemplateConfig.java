@@ -1,7 +1,9 @@
 package com.ochwada.secure_quote_vault.config;
 
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * *******************************************************
@@ -16,11 +18,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RestTemplateConfig {
- /**
-  * Creates and exposes a {@link RestTemplate} bean for making HTTP requests.
-  *
-  * @return a default RestTemplate instance
-  */
 
- 
+    /**
+     * Creates and exposes a {@link RestTemplate} bean for making HTTP requests.
+     *
+     * @return a default RestTemplate instance
+     */
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }

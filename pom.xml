@@ -83,6 +83,31 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- **  =============JWT (JSON Web Token) supports ================== ** -->
+        <!-- JWT (JSON Web Token) support for encoding/decoding user tokens -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.6</version>
+        </dependency>
+
+        <!-- Runtime implementation of the JWT API -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.12.6</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Jackson integration for serializing/deserializing JWT claims -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.12.6</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- **  ======================================================= ** -->
+
         <!-- Loads environment variables from a .env file (e.g., API keys, secrets) -->
         <dependency>
             <groupId>io.github.cdimascio</groupId>
