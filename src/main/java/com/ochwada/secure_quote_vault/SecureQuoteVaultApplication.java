@@ -24,7 +24,7 @@ public class SecureQuoteVaultApplication {
                         "PORT",
                         "MONGODB_URI",
                         "MONGODB_DATABASE",
-                        "RANDOM_QUOTE_URL",
+                        //"RANDOM_QUOTE_URL",
                         "JWT_SECRET"
                 };
         // Iterate through keys and set them as JVM system properties if found

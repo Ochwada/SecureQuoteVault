@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ochwada.secure_quote_vault.model.Quote;
 import com.ochwada.secure_quote_vault.repository.QuoteRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,11 @@ public class QuoteService {
      * Jackson ObjectMapper used for parsing JSON responses.
      */
     private final ObjectMapper mapper = new ObjectMapper();
+ // Debugging
+    @PostConstruct
+    public void checkUrl() {
+        System.out.println("📡 randomQuoteUrl = " + randomQuoteUrl);
+    }
 
     /**
      * Fetches a random quote from an external API and prepares it for persistence by attaching the current user's
@@ -69,6 +75,11 @@ public class QuoteService {
      * @throws IOException if the API response cannot be parsed into JSON
      */
     public Quote fetchAndSaveQuote(String username) throws IOException {
+        RestTemplate restTemplate = new RestTemplate();
+
+        System.out.println("🔍 Using quote API: " + randomQuoteUrl); //  debugging
+
+
         //Call external API
         String response = restTemplate.getForObject(randomQuoteUrl, String.class);
 
